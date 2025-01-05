@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h2>Register New Category</h2>
+    <ol>
+        <li>Add the following code to your main.lua file:<br>
+            <pre style="border: 1px solid black; padding: 16px; width: auto; display: inline-block">
+local interop = require("sb_achievements.interop")
+        
+local Category = interop.registerCategory("Cat Name")
+</pre>
+        </li>
+    </ol>
+    <h2>Register New Achievement</h2>
+    <ol>
+        <li>
+            Add the following code to your main.lua file:<br>
+            <pre style="border: 1px solid black; padding: 16px; width: auto; display: inline-block">
+local interop = require("sb_achievements.interop")
+        
+--- @param e initializedEventData
+local function initializedCallback(e)
+&nbsp;&nbsp;&nbsp;&nbsp;interop.registerAchievement {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id         = "ach_1",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;category   = "Main",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;condition  =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function()
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return tes3.getJournalIndex { id = "A1_1_FindSpymaster" } >= 1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;icon       = "Icons\\mod_folder\\icn_ach_1.tga",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;colour     = interop.colours.yellow,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title      = "Achievement Name",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;desc       = "Achievement description."
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;configDesc = interop.configDesc.hideDesc
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lockedDesc = "Achievement not unlocked."
+&nbsp;&nbsp;&nbsp;&nbsp;}
+end
+event.register(tes3.event.initialized, initializedCallback)
+</pre>
+        </li>
+        <li>The following parameters are required:<br>
+            <ul>
+                <li>id = the unique ID of the achievement</li>
+                <li>category = the category of the achievement:<ul>
+                        <li>Register new categories like above, or use an existing category fom another mod.</li>
+                    </ul>
+                </li>
+                <li>condition = the condition that unlocks the achievement:<ul>
+                        <li>This should be a function that returns a boolean.</li>
+                    </ul>
+                </li>
+                <li>icon - the icon path:<ul>
+                        <li>The icon should be a DDS or TGA type.</li>
+                    </ul>
+                </li>
+                <li>fullIcon - the alternative icon path:<ul>
+                        <li>The icon should be a DDS or TGA type.<br>Note: This parameter can be used if you wish to fully replace the background of the default icon.</li>
+                    </ul>
+                </li>
+                <li>title - the title of the achievement</li>
+                <li>desc - the description of the achievement</li>
+            </ul>
+        </li>
+        <li>The following parameters are optional:<br>
+            <ul>
+                <li>colour - the icon background colour:<ul>
+                        <li>The default colours are red, yellow, green, blue, indigo, violet, white, and black.</li>
+                        <li>Alternatively, a new colour can be assigned in the format
+                            <pre
+                                style="border: 1px solid black; width: auto; display: inline-block">{r / 255, g / 255, b / 255}</pre>
+                            .
+                        </li>
+                    </ul>
+                </li>
+                <li>configDesc - the description display rules for the achievement, overriding the user's MCM
+                    settings:<br>
+                    <ul>
+                        <li>hideDesc - hides the description until the achievement is unlocked</li>
+                        <li>showDesc - shows the description of the achievement even when locked</li>
+                        <li>groupHidden - hides the achievement entirely until it is unlocked</li>
+                    </ul>
+                </li>
+                <li>
+                    lockedDesc - the description of hte achievement when locked:<br>
+                    <ul>
+                        <li>This defaults to an empty string when not given a value and configDesc is set to hideDesc.
+                        </li>
+                        <li>Under lockedMessage I created template messages for steamDetailsRevealed, steamKeepPlaying,
+                            xboxSecret, xboxMoreYouPlay, and psHidden.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ol>
+</body>
+
+</html>
