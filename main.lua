@@ -1,72 +1,77 @@
 local sb_achievements = require("sb_achievements.interop")
+local pData = require("MAC.playerData")
 
 local function init()
-    local iconPath = "Icons\\sb_achievements_example\\"
+    local iconPath = "Icons\\MAC\\"
 
     local cats = {
         main = sb_achievements.registerCategory("Main Quest"),
         side = sb_achievements.registerCategory("Side"),
+        faction = sb_achievements.registerCategory("Faction"),
         misc = sb_achievements.registerCategory("Miscellaneous")
     }
 
+    --Any Achievements noted with "SB" were created by SafetyBox and were part of The Achievement Framework Example code
+    --Main Quest
+    --SB
     sb_achievements.registerAchievement {
-        id = "A1_1_1",
-        category = cats.main,
+        id        = "A1_1_1",
+        category  = cats.main,
         condition = function()
             return tes3.getJournalIndex { id = "A1_1_FindSpymaster" } >= 1
         end,
-        icon = iconPath .. "icn_A1_1_1.tga",
-        colour = sb_achievements.colours.yellow,
-        title = "Ah Yes, We've Been Expecting You", desc = "Complete the character generation."
+        icon      = iconPath .. "icn_A1_1_1.dds",
+        colour    = pData.colours.bronze,
+        title     = "Ah Yes, We've Been Expecting You", desc = "Complete the character generation.",
     }
-
+    --SB
     sb_achievements.registerAchievement {
-        id = "A1_1_14",
-        category = cats.main,
+        id        = "A1_1_14",
+        category  = cats.main,
         condition = function()
             return tes3.getJournalIndex { id = "A1_1_FindSpymaster" } >= 14
         end,
-        icon = iconPath .. "icn_A1_1_14.tga",
-        colour = sb_achievements.colours.yellow,
-        title = "By The Emperor", desc = "Begin the main quest."
+        icon      = iconPath .. "icn_A1_1_14.dds",
+        colour    = pData.colours.bronze,
+        title     = "By The Emperor", desc = "Begin the main quest.",
     }
-
+    --SB
     sb_achievements.registerAchievement {
-        id = "A2_1_60",
-        category = cats.main,
+        id        = "A2_1_60",
+        category  = cats.main,
         condition = function()
             return tes3.getJournalIndex { id = "A2_1_MeetSulMatuul" } >= 60
         end,
-        icon = iconPath .. "icn_A2_1_60.tga",
-        colour = sb_achievements.colours.yellow,
-        title = "Nerevar Rising", desc = "Get confirmation that you are not (yet) the Nerevar.",
-        configDesc = sb_achievements.configDesc.hideDesc
+        icon      = iconPath .. "icn_A2_1_60.dds",
+        colour    = pData.colours.bronze,
+        title     = "Nerevar Rising", desc = "Get confirmation that you are not (yet) the Nerevarine.",
+        configDesc = sb_achievements.configDesc.groupHidden
     }
-
+    --SB
     sb_achievements.registerAchievement {
-        id = "A2_2_50",
-        category = cats.main,
+        id        = "A2_2_50",
+        category  = cats.main,
         condition = function()
             return tes3.getJournalIndex { id = "A2_2_6thHouse" } >= 50
         end,
-        icon = iconPath .. "icn_A2_2_50.tga",
-        colour = sb_achievements.colours.yellow,
-        title = "Tribe Unmourned", desc = "Learn about the existence of House Dagoth, the former sixth house.",
-        configDesc = sb_achievements.configDesc.hideDesc
+        icon      = iconPath .. "icn_A2_2_50.dds",
+        colour    = pData.colours.bronze,
+        title     = "Tribe Unmourned", desc = "Learn about the existence of House Dagoth, the former sixth house.",
+        configDesc = sb_achievements.configDesc.groupHidden
     }
-
+    --SB
     sb_achievements.registerAchievement {
-        id = "A2_3_40",
-        category = cats.main,
+        id        = "A2_3_40",
+        category  = cats.main,
         condition = function()
             return tes3.getJournalIndex { id = "A2_3_CorprusCure" } >= 40
         end,
-        icon = iconPath .. "icn_A2_3_40.tga",
-        colour = sb_achievements.colours.yellow,
-        title = "The Endling", desc = "Meet Yagrum Bagarn, the last of the Dwemer."
+        icon      = iconPath .. "icn_A2_3_40.dds",
+        colour    = pData.colours.bronze,
+        title     = "The Endling", desc = "Meet Yagrum Bagarn, the last of the Dwemer.",
+        configDesc = sb_achievements.configDesc.groupHidden
     }
-
-    -- Updated icon and condition to reflect requiring player to be declared Hortator of all THREE houses
+    --SB slightly modified. New Icon and conditions changed so you have to be hort of all three instead of any of the three
     sb_achievements.registerAchievement {
         id        = "B_Hortator",
         category  = cats.main,
@@ -79,7 +84,7 @@ local function init()
         configDesc = sb_achievements.configDesc.groupHidden
     }
 
-    -- Requires all THREE tribes now
+    --SB slightly modified. Conditions changed so you have to be Nerevarine of all three instead of any of the three
     sb_achievements.registerAchievement {
         id        = "B_Nerevarine",
         category  = cats.main,
@@ -91,30 +96,54 @@ local function init()
         title     = "Folk Hero", desc = "Be recognized as the Nerevarine by the Urshilaku, the Ahemmusa, the Zainab, and the Erabenimsun.",
         configDesc = sb_achievements.configDesc.groupHidden
     }
-
+    --SB
     sb_achievements.registerAchievement {
-        id = "B8_MeetVivec_34",
-        category = cats.main,
+        id        = "B8_MeetVivec_34",
+        category  = cats.main,
         condition = function()
             return tes3.getJournalIndex { id = "B8_MeetVivec" } >= 34
         end,
-        icon = iconPath .. "icn_B8_MeetVivec_34.tga",
-        colour = sb_achievements.colours.yellow,
-        title = "The Warrior Poet", desc = "Meet Vivec, head of the Tribunal."
+        icon      = iconPath .. "icn_B8_MeetVivec_34.dds",
+        colour    = pData.colours.bronze,
+        title     = "The Warrior Poet", desc = "Meet Vivec, head of the Tribunal.",
+        configDesc = sb_achievements.configDesc.groupHidden
     }
-
     sb_achievements.registerAchievement {
-        id = "C3_DestroyDagoth_20",
-        category = cats.main,
+        id        = "Tools",
+        category  = cats.main,
+        configDesc = sb_achievements.configDesc.groupHidden,
+        condition = function()
+            local myData = pData.getData()
+            return tes3.getJournalIndex {id = "C0_Act_C"} == 15 and (tes3.getJournalIndex {id = "B8_MeetVivec"} >= 50 or tes3.getJournalIndex {id = "CX_BackPath"} >= 50) and pData.gotKeening()
+        end,
+        icon      = iconPath .. "icn_Tools.dds",
+        colour    = pData.colours.silver,
+        title     = "The Tools Of Godhood", desc = "Collect Wraithguard, Sunder, and Keening."
+    }
+    sb_achievements.registerAchievement {
+        id        = "SecretPath",
+        category  = cats.main,
+        configDesc = sb_achievements.configDesc.groupHidden,
+        condition = function()
+                return tes3.getJournalIndex {id = "CX_BackPath"} >= 50 and tes3.getJournalIndex {id = "C3_DestroyDagoth"} >= 20
+        end,
+        icon      = iconPath .. "icn_SecretPath.dds",
+        colour    = pData.colours.plat,
+        title     = "Doing It The Hard Way", desc = "Defeat Dagoth Ur using the Jury-Rigged Wraithguard."
+    }
+    --SB
+    sb_achievements.registerAchievement {
+        id        = "C3_DestroyDagoth_20",
+        category  = cats.main,
         condition = function()
             return tes3.getJournalIndex { id = "C3_DestroyDagoth" } >= 20
         end,
-        icon = iconPath .. "icn_C3_DestroyDagoth_20.tga",
-        colour = sb_achievements.colours.yellow,
-        title = "Prophecy Fulfilled", desc = "Defeat Dagoth Ur, and destroy the Heart of Lorkhan.",
-        configDesc = sb_achievements.configDesc.hideDesc
+        icon      = iconPath .. "icn_C3_DestroyDagoth_20.dds",
+        colour    = pData.colours.gold,
+        title     = "Prophecy Fulfilled", desc = "Defeat Dagoth Ur, and destroy the Heart of Lorkhan.",
+        configDesc = sb_achievements.configDesc.groupHidden
     }
-
+    
     sb_achievements.registerAchievement {
         id = "MS_FargothRing",
         category = cats.side,
