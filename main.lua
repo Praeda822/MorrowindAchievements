@@ -67,17 +67,15 @@ local function init()
     }
 
     sb_achievements.registerAchievement {
-        id = "B_Hortator",
-        category = cats.main,
+        id        = "B_Hortator",
+        category  = cats.main,
         condition = function()
-            return tes3.getJournalIndex { id = "B5_RedoranHort" } >= 50 or
-                tes3.getJournalIndex { id = "B6_HlaaluHort" } >= 50 or
-                tes3.getJournalIndex { id = "B7_TelvanniHort" } >= 50
+            return tes3.getJournalIndex { id = "B5_RedoranHort" } >= 50 and tes3.getJournalIndex { id = "B6_HlaaluHort" } >= 50 and tes3.getJournalIndex { id = "B7_TelvanniHort" } >= 50
         end,
-        icon = iconPath .. "icn_B_Hortator.tga",
-        colour = sb_achievements.colours.yellow,
-        title = "House Father", desc = "Become Hortator of House Redoran, House Hlaalu, or House Telvanni.",
-        configDesc = sb_achievements.configDesc.hideDesc
+        icon      = iconPath .. "icn_Hort.dds",
+        colour    = pData.colours.bronze,
+        title     = "House Father", desc = "Become Hortator of House Redoran, House Hlaalu, and House Telvanni.",
+        configDesc = sb_achievements.configDesc.groupHidden
     }
 
     sb_achievements.registerAchievement {
