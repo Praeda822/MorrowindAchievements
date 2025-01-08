@@ -215,6 +215,128 @@ local function init()
     }
 
     sb_achievements.registerAchievement {
+        id        = "Pilgrimages",
+        category  = cats.side,
+        condition = function()
+            if (tes3.getJournalIndex { id = "TT_fieldsKummu" } >= 100 and tes3.getJournalIndex { id = "TT_StopMoon" } >= 100 and tes3.getJournalIndex { id = "TT_PalaceVivec" } >= 100 and tes3.getJournalIndex { id = "TT_PuzzleCanal" } >= 100 and tes3.getJournalIndex { id = "TT_MaskVivec" } >= 100 and tes3.getJournalIndex { id = "TT_RuddyMan" } >= 100 and tes3.getJournalIndex { id = "TT_GhostGate" } >= 100) then
+                return true
+            end
+        end,
+        icon      = iconPath .. "icn_Pilgrimages.dds",
+        colour    = pData.colours.bronze,
+        title     = "Pilgrim", desc = "Complete the Pilgrimages of the Seven Graces.",
+    }
+    sb_achievements.registerAchievement {
+        id        = "MHActorQuest",
+        category  = cats.side,
+        condition = function()
+            for npc in tes3.player.cell:iterateReferences(tes3.objectType.npc) do
+                if (npc.baseObject.id == "meryn othralas") then
+                    local Mcontext = npc.context
+                    if (tes3.getJournalIndex { id = "MS_Performers" } == 120 and Mcontext.missCounter == 0.0 ) then
+                        return true
+                    end
+                end
+            end
+        end,
+        icon      = iconPath .. "icn_MHActorQuest.dds",
+        colour    = pData.colours.silver,
+        title     = "Thespian?", desc = "Flawlessly stand in for an ill actor.",
+    }
+    sb_achievements.registerAchievement {
+        id        = "MHBBquest",
+        category  = cats.side,
+        condition = function()
+            for npc in tes3.player.cell:iterateReferences(tes3.objectType.npc) do
+                if (npc.baseObject.id == "ignatius_flaccus") then
+                    local Mcontext = npc.context
+                    if (tes3.getJournalIndex { id = "MS_BattleBots1" } == 80 and Mcontext.PCBotBet == 1000 ) then
+                        return true
+                    end
+                end
+            end
+        end,
+        icon      = iconPath .. "icn_MHBBquest.dds",
+        colour    = pData.colours.silver,
+        title     = "No Risk No Reward", desc = "Bet, and win, the maximum amount at the Robot Arena.",
+    }
+
+    sb_achievements.registerAchievement {
+        id        = "ThirskChief",
+        category  = cats.side,
+        condition = function()
+            return tes3.getJournalIndex { id = "BM_MeadHall" } == 100 and tes3.getJournalIndex { id = "BM_MeadHall_b" } == 20 and tes3.getJournalIndex { id = "BM_MeadHall_c" } == 20
+        end,
+        icon      = iconPath .. "icn_ThirskChief.dds",
+        colour    = sb_achievements.colours.blue,
+        title     = "Bring Me More Mead!", desc = "Complete all Thirsk Mead Hall business as it's Chieftain.",
+    }
+    sb_achievements.registerAchievement {
+        id        = "NakedNords",
+        category  = cats.side,
+        condition = function()
+            return tes3.getJournalIndex { id = "MV_AbusedHealer" } >= 75 and tes3.getJournalIndex { id = "MV_RecoverWidowmaker" } >= 70 and tes3.getJournalIndex { id = "MV_ParalyzedBarbarian" } >= 100
+        end,
+        icon      = iconPath .. "icn_NakedNords.dds",
+        colour    = pData.colours.bronze,
+        title     = "Why Are You Naked?", desc = "Complete the stories of Vvardenfell's naked Nords.",
+    }
+    sb_achievements.registerAchievement {
+        id        = "GlimpseFuture",
+        category  = cats.side,
+        configDesc = sb_achievements.configDesc.groupHidden,
+        condition = function()
+            return tes3.getJournalIndex { id = "BM_SadSeer" } == 110
+        end,
+        icon      = iconPath .. "icn_GlimpseFuture.dds",
+        colour    = pData.colours.silver,
+        title     = "A Glimpse Of The Future", desc = "Hear of the coming Oblivion Crisis."
+    }
+    sb_achievements.registerAchievement {
+        id        = "CureWere",
+        category  = cats.side,
+        condition = function()
+            return tes3.getJournalIndex { id = "BM_WolfGiver" } >= 120 or tes3.getJournalIndex { id = "BM_WolfGiver_a" } >= 20
+        end,
+        icon      = iconPath .. "icn_CureWere.dds",
+        colour    = pData.colours.silver,
+        title     = "A Cure For Lycanthropy", desc = "Cure yourself of the werewolf disease.",
+        configDesc = sb_achievements.configDesc.groupHidden
+    }
+    sb_achievements.registerAchievement {
+        id        = "Lovers",
+        category  = cats.side,
+        condition = function()
+            return tes3.getJournalIndex { id = "EB_Unrequited" } >= 110 and tes3.getJournalIndex { id = "MS_MatchMaker" } == 120 and tes3.getJournalIndex { id = "MV_MissingCompanion" } == 60 and (tes3.getJournalIndex { id = "MV_VictimRomance" } == 100 or tes3.getJournalIndex { id = "MV_VictimRomance" } == 105)
+        end,
+        icon      = iconPath .. "icn_lovers.dds",
+        colour    = pData.colours.bronze,
+        title     = "Softy At Heart", desc = "Help the residents of Morrowind find love.",
+    }
+    sb_achievements.registerAchievement {
+        id        = "Daedrashrines",
+        category  = cats.side,
+        condition = function()
+            return tes3.getJournalIndex { id = "DA_Azura" } >= 40 and tes3.getJournalIndex { id = "DA_Boethiah" } >= 70 and tes3.getJournalIndex { id = "DA_Malacath" } >= 70 and tes3.getJournalIndex { id = "DA_Mehrunes" } >= 40 and tes3.getJournalIndex { id = "DA_Mephala" } == 60 and tes3.getJournalIndex { id = "DA_MolagBal" } == 30 and tes3.getJournalIndex { id = "DA_Sheogorath" } == 70
+        end,
+        icon      = iconPath .. "icn_Daedrashrines.dds",
+        colour    = pData.colours.bronze,
+        title     = "Servant Of Oblivion", desc = "Complete the tasks of all the Daedra Princes of Morrowind.",
+        configDesc = sb_achievements.configDesc.groupHidden
+    }
+    sb_achievements.registerAchievement {
+        id        = "VampQuests",
+        category  = cats.side,
+        condition = function()
+            return (tes3.getJournalIndex { id = "VA_VampChild" } >= 40 and tes3.getJournalIndex { id = "VA_VampHunter" } >= 70) or (tes3.getJournalIndex { id = "VA_VampBlood" } >= 70 and tes3.getJournalIndex { id = "VA_VampCountess" } >= 40) or (tes3.getJournalIndex { id = "VA_VampCult" } == 60 and tes3.getJournalIndex { id = "VA_VampAmulet" } == 30)
+        end,
+        icon      = iconPath .. "icn_VampQuests.dds",
+        colour    = pData.colours.bronze,
+        title     = "Clan Vampire", desc = "Complete your clan specific Vampire quests.",
+        configDesc = sb_achievements.configDesc.groupHidden
+    }
+
+    sb_achievements.registerAchievement {
         id = "MudcrabMerchant",
         category = cats.misc,
         condition = function()
