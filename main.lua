@@ -143,7 +143,65 @@ local function init()
         title     = "Prophecy Fulfilled", desc = "Defeat Dagoth Ur, and destroy the Heart of Lorkhan.",
         configDesc = sb_achievements.configDesc.groupHidden
     }
-    
+
+    -- TRIBUNAL
+    sb_achievements.registerAchievement {
+        id        = "ToMournhold",
+        category  = cats.main,
+        condition = function()
+            return tes3.getJournalIndex {id = "TR_DBAttack"} >= 60
+        end,
+        icon      = iconPath .. "icn_ToMournhold.dds",
+        colour    = pData.colours.bronze,
+        title     = "City of Light, City of Magic", desc = "Travel to Mournhold on Morrowind's mainland."
+    }
+    sb_achievements.registerAchievement {
+        id        = "HuntDB",
+        category  = cats.main,
+        condition = function()
+            return tes3.getJournalIndex {id = "TR_DBHunt"} >= 60
+        end,
+        icon      = iconPath .. "icn_HuntDB.dds",
+        colour    = pData.colours.bronze,
+        title     = "Hunted To Hunter", desc = "Find the clue that points to who hired the Dark Brotherhood.",
+        configDesc = sb_achievements.configDesc.groupHidden
+    }
+    sb_achievements.registerAchievement {
+        id        = "MHAttack",
+        category  = cats.main,
+        condition = function()
+            return tes3.getJournalIndex {id = "TR_MHAttack"} >= 110
+        end,
+        icon      = iconPath .. "icn_MHAttack.dds",
+        colour    = pData.colours.bronze,
+        title     = "Attack On Mournhold", desc = "Rid the Plaza of the strange creatures.",
+        configDesc = sb_achievements.configDesc.groupHidden
+    }
+    sb_achievements.registerAchievement {
+        id        = "TRBlade",
+        category  = cats.main,
+        condition = function()
+            return tes3.getJournalIndex {id = "TR_Blade"} >= 100
+        end,
+        icon      = iconPath .. "icn_TRBlade.dds",
+        colour    = pData.colours.silver,
+        title     = "Trueflame", desc = "Reforge the ancient blade of Indoril Nerevar.",
+        configDesc = sb_achievements.configDesc.groupHidden
+    }
+    sb_achievements.registerAchievement {
+        id        = "TRAlmaEnd",
+        category  = cats.main,
+        condition = function()
+            return tes3.getJournalIndex {id = "TR_SothaSil"} >= 100
+        end,
+        icon      = iconPath .. "icn_TRAlmaEnd.dds",
+        colour    = pData.colours.gold,
+        title     = "Almalexia's End", desc = "End Almalexia's madness.",
+        configDesc = sb_achievements.configDesc.groupHidden
+    }
+
+    -- SIDE QUESTS
+    -- SB
     sb_achievements.registerAchievement {
         id = "MS_FargothRing",
         category = cats.side,
