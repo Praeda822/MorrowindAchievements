@@ -66,6 +66,7 @@ local function init()
         title = "The Endling", desc = "Meet Yagrum Bagarn, the last of the Dwemer."
     }
 
+    -- Updated icon and condition to reflect requiring player to be declared Hortator of all THREE houses
     sb_achievements.registerAchievement {
         id        = "B_Hortator",
         category  = cats.main,
@@ -78,19 +79,17 @@ local function init()
         configDesc = sb_achievements.configDesc.groupHidden
     }
 
+    -- Requires all THREE tribes now
     sb_achievements.registerAchievement {
-        id = "B_Nerevarine",
-        category = cats.main,
+        id        = "B_Nerevarine",
+        category  = cats.main,
         condition = function()
-            return tes3.getJournalIndex { id = "B1_UnifyUrshilaku" } >= 50 or
-                tes3.getJournalIndex { id = "B2_AhemmusaSafe" } >= 50 or
-                tes3.getJournalIndex { id = "B3_ZainabBride" } >= 50
+            return tes3.getJournalIndex { id = "B1_UnifyUrshilaku" } >= 50 and tes3.getJournalIndex { id = "B2_AhemmusaSafe" } >= 50 and tes3.getJournalIndex { id = "B3_ZainabBride" } >= 50 and tes3.getJournalIndex {id = "B4_KillWarLovers"} >= 55
         end,
-        icon = iconPath .. "icn_B_Nerevarine.tga",
-        colour = sb_achievements.colours.yellow,
-        title = "Folk Hero", desc =
-    "Be recognised as the Nerevarine by the Urshilaku, the Ahemmusa, the Zainab, or the Erabenimsun.",
-        configDesc = sb_achievements.configDesc.hideDesc
+        icon      = iconPath .. "icn_B_Nerevarine.dds",
+        colour    = pData.colours.bronze,
+        title     = "Folk Hero", desc = "Be recognized as the Nerevarine by the Urshilaku, the Ahemmusa, the Zainab, and the Erabenimsun.",
+        configDesc = sb_achievements.configDesc.groupHidden
     }
 
     sb_achievements.registerAchievement {
